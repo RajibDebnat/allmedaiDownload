@@ -1,0 +1,13 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem; /* Default padding for larger screens */
+  text-align: center;
+}
+
+/* Media query for screens smaller than 576px */
+@media (max-width: 576px) {
+  #root {
+    padding: 5px; /* Reduced padding for smaller screens */
+  }
+}
