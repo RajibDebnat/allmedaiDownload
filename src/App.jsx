@@ -14,6 +14,8 @@ import DownloadMethod from "./components/DownloadMethod";
 import AccordionSection from "./components/Accordion";
 import { faqs } from "./constant";
 import FeatureCards from "./components/Features";
+import SignUpForm from "./components/SignUpForm";
+import Footer from "./components/Footer";
 function App() {
   const [urls, setUrls] = useState("");
   const [videoDetails, setVideoDetails] = useState("");
@@ -49,6 +51,8 @@ function App() {
       <DownloadMethod/>
       <TestimonialSlider/>
       <AccordionSection/>
+      <SignUpForm/>
+      <Footer/>
     </main>
   );
 }
