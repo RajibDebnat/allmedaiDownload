@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import { faqs } from "../constant";
 export default function AccordionSection() {
   return (
-    <div className=" mt-14  mb-14">
+    <div className=" mt-[7rem]  mb-14">
       {faqs.map((data, index) => (
         <Accordion>
           <AccordionSummary

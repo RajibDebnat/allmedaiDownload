@@ -56,6 +56,9 @@ const ConnectPage = () => {
       <Typography variant="body1" align="center" gutterBottom>
         We'd love to hear from you! Fill out the form below to reach out.
       </Typography>
+      <Typography variant="body1" align="center" gutterBottom>
+          Official Email : email@gmail.com
+      </Typography>
 
       <Box
         component="form"

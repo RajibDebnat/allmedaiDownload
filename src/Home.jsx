@@ -16,21 +16,24 @@ import { faqs } from "./constant";
 import FeatureCards from "./components/Features";
 import SignUpForm from "./components/SignUpForm";
 import Footer from "./components/Footer";
+import Loading from './components/Loading';
 function Home() {
   const [urls, setUrls] = useState("");
   const [videoDetails, setVideoDetails] = useState("");
   const [error,setError] = useState('')
-
+const [load, setLoad] = useState();
   useEffect(() => {
+    setLoad(true),
     fetchData(urls).then((data) => {
       if (data) {
+        setLoad(false)
         setVideoDetails(data);  
         console.log("Video details:", data);
       } else {
         console.log("Failed to fetch video details.");
       }
     });
-  }, [urls]);
+  }, [urls,setLoad]);
 
   function handleUrlSubmit(url) {
     // console.log(url)
@@ -46,7 +49,7 @@ function Home() {
       <ShowCase/>
       <PreMadeInput handleSubmit={handleUrlSubmit} />
       <HowToDownload />
-      <Video thumbnail={picture} title={title} links={links} />
+      {load?<Loading/>:<Video thumbnail={picture} title={title} links={links} />}
       <FeatureCards/>
       <DownloadMethod/>
       <TestimonialSlider/>
