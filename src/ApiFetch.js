@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiKey = '7a7247164fmsh37a12bd000f2423p17242ejsnbf802574a35d'; // Replace with your actual RapidAPI key
+const apiKey = '5bdd4f71c0mshd25920c0889b35ap1dd4f1jsn995d821acbba'; // Replace with your actual RapidAPI key
 
 export const fetchData = async (url) => {
   try {

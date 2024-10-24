@@ -15,17 +15,15 @@ const Footer = () => {
     >
       {/* Footer Links */}
       <Grid container spacing={4} justifyContent="center" sx={{ marginBottom: "20px" }}>
-        <Grid item xs={12} md={3}>
+        <Grid item xs={8} md={3}>
           <Typography variant="h6" gutterBottom>
             Company
           </Typography>
-          <Link href="#" color="inherit" underline="none" sx={{ display: "block", marginBottom: "8px" }}>
+          <Link href="/about-us" color="inherit" underline="none" sx={{ display: "block", marginBottom: "8px" }}>
             About Us
           </Link>
-          <Link href="#" color="inherit" underline="none" sx={{ display: "block", marginBottom: "8px" }}>
-            Careers
-          </Link>
-          <Link href="#" color="inherit" underline="none" sx={{ display: "block", marginBottom: "8px" }}>
+         
+          <Link href="/connect" color="inherit" underline="none" sx={{ display: "block", marginBottom: "8px" }}>
             Contact
           </Link>
         </Grid>
