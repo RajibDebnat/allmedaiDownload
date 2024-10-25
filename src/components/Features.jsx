@@ -4,11 +4,10 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
-
 import { performance, flexible, responsiveDesign, noMoney } from "../tools";
 import { useTheme } from "@mui/material/styles";
-
 import { useMediaQuery } from "@mui/material";
+
 const features = [
   {
     image: performance,
@@ -34,22 +33,42 @@ const features = [
 
 export default function FeatureCards() {
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down(382));
+  // Media query for extra small screens (below 600px)
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  // Media query for very small screens (below 382px)
+  const isExtraSmallScreen = useMediaQuery(theme.breakpoints.down(382));
+
   return (
-    <Grid container spacing={2} sx={{marginTop:"7rem"}}>
+    <Grid container spacing={2} sx={{ marginTop: "7rem" }}>
       {features.map((feature, index) => (
-        <Grid item xs={12} md={6} key={index}>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={3} // Set 4 columns on medium screens and above
+          key={index}
+          sx={{
+            display: "flex",
+            justifyContent: "center", // Center on smaller screens
+          }}
+        >
           <Card
             sx={{
               display: "flex",
-              flexDirection: isSmallScreen ? "column" : "row",
+              flexDirection: isSmallScreen ? "column" : "row", // Stack cards vertically on small screens
               maxWidth: "100%",
-              justifyContent: isSmallScreen && "center",
+              alignItems: "center", // Center content inside the card
+              textAlign: isSmallScreen ? "center" : "left", // Center text on small screens
+              padding: "1rem",
             }}
           >
             <CardMedia
               component="img"
-              sx={{ width: 100 ,margin:"0 auto"}}
+              sx={{
+                width: 100,
+                height: 100,
+                margin: "0 auto", // Center the image
+              }}
               image={feature.image}
               alt={feature.title}
             />

@@ -69,6 +69,7 @@ const SignUpForm = function ({ handleSubmit }) {
         value={emailValue}
         onChange={handleEmailInput}
         type={"email"}
+        name="email"
         placeholder="Enter your email for updates"
         endDecorator={
           <Button onClick={handleNewsletterSignup}>Subscribe</Button>

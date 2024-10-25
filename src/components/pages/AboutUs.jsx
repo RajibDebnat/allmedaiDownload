@@ -1,161 +1,257 @@
 import React from "react";
-import {
-  Container,
-  Typography,
-  Box,
-  Grid,
-  Card,
-  CardContent,
-  Avatar,
-  Button,
-  useTheme,
-} from "@mui/material";
-import { styled } from '@mui/system';
-import PeopleIcon from "@mui/icons-material/People";
-import VerifiedIcon from "@mui/icons-material/Verified";
-import SpeedIcon from "@mui/icons-material/Speed";
-// import missionImage from '../assets/mission.jpg'; // Replace with actual image path
-// import teamImage from '../assets/team.jpg'; // Replace with actual image path
+import { motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
-// Custom styles
-const HeroSection = styled(Box)(({ theme }) => ({
-  background: `url(https://via.placeholder.com/1920x500) no-repeat center center/cover`,
-  color: "#fff",
-  textAlign: "center",
-  padding: "80px 20px",
-}));
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 }
+};
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const scaleIn = {
+  initial: { scale: 0.8, opacity: 0 },
+  animate: { scale: 1, opacity: 1 },
+  transition: { duration: 0.5 }
+};
 
 const valuesData = [
-  { icon: <PeopleIcon fontSize="large" />, title: "Community", description: "Building a global community" },
-  { icon: <VerifiedIcon fontSize="large" />, title: "Trust", description: "Earning trust through transparency" },
-  { icon: <SpeedIcon fontSize="large" />, title: "Efficiency", description: "Ensuring fast performance" },
+  { 
+    icon: "👥", 
+    title: "Community First", 
+    description: "Building a vibrant global community where everyone's voice matters." 
+  },
+  { 
+    icon: "✅", 
+    title: "Trust & Security", 
+    description: "Maintaining the highest standards of security and transparency." 
+  },
+  { 
+    icon: "⚡", 
+    title: "Lightning Fast", 
+    description: "Delivering blazing-fast performance with cutting-edge technology." 
+  },
 ];
 
-// Sample team members data
 const teamMembers = [
-  { name: "Rajib D.", position: "Founder & CEO", image: "https://via.placeholder.com/150" },
-  { name: "Anita P.", position: "Chief Marketing Officer", image: "https://via.placeholder.com/150" },
-  { name: "Vikram T.", position: "Lead Developer", image: "https://via.placeholder.com/150" },
+  { 
+    name: "Rajib D.", 
+    position: "Founder & CEO", 
+    image: "/src/assets/founder.jpeg",
+    bio: "10+ years of experience in tech leadership"
+  },
+  { 
+    name: "Anita P.", 
+    position: "Chief Marketing Officer", 
+    image: "/api/placeholder/150/150",
+    bio: "Digital marketing expert with global experience"
+  },
+  { 
+    name: "Vikram T.", 
+    position: "Lead Developer", 
+    image: "/api/placeholder/150/150",
+    bio: "Full-stack developer passionate about user experience"
+  },
 ];
 
 const AboutUs = () => {
-  const theme = useTheme();
-
   return (
-    <div>
-      {/* Section 1: Hero Section */}
-      <HeroSection>
-        <Typography variant="h2" fontWeight="bold" gutterBottom>
-          Welcome to Media Downloader
-        </Typography>
-        <Typography variant="h6" maxWidth="800px" margin="auto">
-          Your one-stop solution for downloading media from YouTube, Instagram, and more with ease.
-        </Typography>
-      </HeroSection>
+    <div className="min-h-screen overflow-hidden">
+      {/* Hero Section */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="relative h-screen flex items-center rounded-xl justify-center px-4 bg-gradient-to-r from-blue-900 to-blue-700"
+        tyle={{
+          backgroundImage: `url('/src/assets/B.png')`,  // Replace with your image path
+          backgroundSize: 'contain', // Adjust this to 'cover' or 'contain' based on your preference
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <div className="max-w-4xl mx-auto text-center text-white">
+          <motion.h1 
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
+          >
+            Welcome to Media Downloader
+          </motion.h1>
+          <motion.p 
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-xl md:text-2xl opacity-90"
+          >
+            Your one-stop solution for downloading media from YouTube, Instagram, and more with ease.
+          </motion.p>
+        </div>
+        <motion.div 
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          className="absolute bottom-10 text-white"
+        >
+          <ChevronDown size={40} />
+        </motion.div>
+      </motion.div>
 
-      {/* Section 2: Our Story */}
-      <Container sx={{ paddingTop: "40px", paddingBottom: "40px" }}>
-        <Box textAlign="center" marginBottom="40px">
-          <Typography variant="h4" fontWeight="bold" gutterBottom>
-            Our Story
-          </Typography>
-          <Typography variant="body1" color="textSecondary" maxWidth="700px" margin="auto">
-            Media Downloader was born from the simple idea of making it easier for users to access their favorite media. 
-            What started as a small project has now become a trusted tool used by millions worldwide.
-          </Typography>
-        </Box>
-      </Container>
+      {/* Our Story Section */}
+      <motion.div 
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true }}
+        className="max-w-6xl mx-auto px-4 py-24"
+      >
+        <motion.div 
+          variants={fadeInUp}
+          className="text-center max-w-3xl mx-auto"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">Our Story</h2>
+          <p className="text-gray-600 text-xl leading-relaxed">
+            From a passionate side project to a global platform serving millions, 
+            our journey has been driven by a simple mission: making media accessible to everyone.
+            We've grown through challenges, celebrated victories, and learned from our community every step of the way.
+          </p>
+        </motion.div>
+      </motion.div>
 
-      {/* Section 3: Core Values */}
-      <Box sx={{ backgroundColor: theme.palette.grey[100], padding: "40px 20px" }}>
-        <Container>
-          <Typography variant="h4" fontWeight="bold" textAlign="center" marginBottom="40px">
+      {/* Core Values Section */}
+      <motion.div 
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true }}
+        variants={staggerContainer}
+        className="bg-gray-50 py-24 px-4"
+      >
+        <div className="max-w-6xl mx-auto">
+          <motion.h2 
+            variants={fadeInUp}
+            className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent"
+          >
             Our Core Values
-          </Typography>
-          <Grid container spacing={4} justifyContent="center">
+          </motion.h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {valuesData.map((value, index) => (
-              <Grid item xs={12} sm={4} key={index} textAlign="center">
-                <Card sx={{ padding: "20px" }}>
+              <motion.div 
+                key={index}
+                variants={scaleIn}
+                whileHover={{ scale: 1.05 }}
+                className="bg-white p-8 rounded-3xl shadow-xl"
+              >
+                <div className="w-20 h-20 bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center text-white text-3xl mx-auto mb-6 transform rotate-3">
                   {value.icon}
-                  <Typography variant="h6" fontWeight="bold" gutterBottom>
-                    {value.title}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    {value.description}
-                  </Typography>
-                </Card>
-              </Grid>
+                </div>
+                <h3 className="text-2xl font-bold text-center mb-4">{value.title}</h3>
+                <p className="text-gray-600 text-center text-lg">{value.description}</p>
+              </motion.div>
             ))}
-          </Grid>
-        </Container>
-      </Box>
+          </div>
+        </div>
+      </motion.div>
 
-      {/* Section 4: Meet the Team */}
-      <Container sx={{ paddingTop: "40px", paddingBottom: "40px" }}>
-        <Box marginBottom="40px">
-          <Typography variant="h4" textAlign="center" fontWeight="bold" gutterBottom>
-            Meet Our Team
-          </Typography>
-          <Grid container spacing={4} justifyContent="center">
-            {teamMembers.map((member, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
-                <Card sx={{ textAlign: "center", padding: "20px" }}>
-                  <Avatar
-                    alt={member.name}
-                    src={member.image}
-                    sx={{ width: 120, height: 120, margin: "auto", marginBottom: "15px" }}
-                  />
-                  <CardContent>
-                    <Typography variant="h6" fontWeight="bold">
-                      {member.name}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary">
-                      {member.position}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-      </Container>
+      {/* Team Section */}
+      <motion.div 
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true }}
+        variants={staggerContainer}
+        className="max-w-6xl mx-auto px-4 py-24"
+      >
+        <motion.h2 
+          variants={fadeInUp}
+          className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent"
+        >
+          Meet Our Team
+        </motion.h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {teamMembers.map((member, index) => (
+            <motion.div 
+              key={index}
+              variants={scaleIn}
+              whileHover={{ scale: 1.05 }}
+              className="bg-white p-8 rounded-3xl shadow-xl"
+            >
+              <motion.img
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 1 }}
+                src={member.image}
+                alt={member.name}
+                className="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-blue-600"
+              />
+              <h3 className="text-2xl font-bold text-center mb-2">{member.name}</h3>
+              <p className="text-blue-600 text-lg text-center mb-4">{member.position}</p>
+              <p className="text-gray-600 text-center text-lg">{member.bio}</p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
 
-      {/* Section 5: Vision & Mission */}
-      <Box sx={{  backgroundSize: "cover", color: "#fff", padding: "60px 20px" }}>
-        <Container>
-          <Grid container spacing={4} alignItems="center">
-            <Grid item xs={12} md={6}>
-              <Typography variant="h4" fontWeight="bold" gutterBottom>
-                Our Vision
-              </Typography>
-              <Typography variant="body1" color="inherit" gutterBottom>
-                To become the leading media downloading platform, providing the best solutions for downloading content across all major social platforms.
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Typography variant="h4" fontWeight="bold" gutterBottom>
-                Our Mission
-              </Typography>
-              <Typography variant="body1" color="inherit">
-                We aim to make the downloading process seamless, fast, and available to everyone. We prioritize user experience and deliver top-tier performance.
-              </Typography>
-            </Grid>
-          </Grid>
-        </Container>
-      </Box>
+      {/* Vision & Mission Section */}
+      <motion.div 
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true }}
+        className="bg-gradient-to-r  from-blue-700 to-blue-900 text-white py-24 px-4"
+      >
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+            <motion.div variants={fadeInUp}>
+              <h2 className="text-4xl font-bold mb-8">Our Vision</h2>
+              <p className="opacity-90 text-xl leading-relaxed">
+                To revolutionize digital content accessibility while maintaining the highest 
+                standards of quality and user experience. We envision a world where managing 
+                your media content is effortless and secure.
+              </p>
+            </motion.div>
+            <motion.div variants={fadeInUp}>
+              <h2 className="text-4xl font-bold mb-8">Our Mission</h2>
+              <p className="opacity-90 text-xl leading-relaxed">
+                To provide innovative, user-friendly solutions that make media downloading 
+                accessible to everyone. We're committed to continuous improvement and 
+                staying ahead of technological advancements.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
 
-      {/* Section 6: Call to Action */}
-      <Container sx={{ padding: "40px 0", textAlign: "center" }}>
-        <Typography variant="h4" fontWeight="bold" gutterBottom>
-          Join Us on Our Journey!
-        </Typography>
-        <Typography variant="body1" color="textSecondary" gutterBottom>
-          Stay updated with our latest features, tips, and offers.
-        </Typography>
-        <Button variant="contained" color="primary" sx={{ marginTop: "20px" }}>
-          Contact Us
-        </Button>
-      </Container>
+      {/* Call to Action Section */}
+      <motion.div 
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true }}
+        className="max-w-4xl mx-auto px-4 py-24 text-center"
+      >
+        <motion.h2 
+          variants={fadeInUp}
+          className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent"
+        >
+          Ready to Get Started?
+        </motion.h2>
+        <motion.p 
+          variants={fadeInUp}
+          className="text-gray-600 mb-12 max-w-2xl mx-auto text-xl"
+        >
+          Join thousands of satisfied users who trust Media Downloader for their content needs.
+        </motion.p>
+        <motion.button 
+          variants={scaleIn}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-12 py-5 rounded-full text-xl font-semibold shadow-xl hover:shadow-2xl transition-shadow duration-300"
+        >
+          Get Started Now
+        </motion.button>
+      </motion.div>
     </div>
   );
 };
