@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link as RouterLink } from "react-router-dom"; // Import Link from react-router-dom
+import { NavLink, Link as RouterLink } from "react-router-dom"; // Import NavLink and Link from react-router-dom
 import Box from "@mui/joy/Box";
 import IconButton from "@mui/joy/IconButton";
 import Drawer from "@mui/joy/Drawer";
@@ -9,9 +9,12 @@ import Typography from "@mui/joy/Typography";
 import ModalClose from "@mui/joy/ModalClose";
 import Menu from "@mui/icons-material/Menu";
 import CardMedia from "@mui/material/CardMedia";
-import Link from "@mui/joy/Link"; // Import Link from Material UI Joy
 import logo from "../assets/B.png";
 import { navLink } from "../constant";
+import { motion } from 'framer-motion';
+
+// Custom motion Link for animation on click
+const MotionNavLink = motion(NavLink);
 
 function Header() {
   const [open, setOpen] = useState(false);
@@ -19,29 +22,35 @@ function Header() {
   return (
     <header className="mb-16">
       <nav className="items-center flex justify-between">
-          <Link
-            to={'/'}
-            className="cursor-pointer font-Open Sans text-xl font-normal text-slate-800 no-underline"
-          >
         <div className="rounded-3xl">
+          <NavLink
+            to={'/'}
+            className="cursor-pointer font-Open Sans font-normal text-slate-800 no-underline"
+          >
             <CardMedia
               component="img"
               sx={{ maxWidth: "80px", borderRadius: "50%" }}
               alt={"media download logo"}
               image={logo}
             />
+          </NavLink>
         </div>
-          </Link>
         <ul className="flex gap-20 list-none max-md:hidden">
           {navLink.map((item, index) => (
             <li key={index}>
-              <Link
-                component={RouterLink} // Use react-router-dom's Link as the component
+              <MotionNavLink
                 to={item.path}
-                className="cursor-pointer font-Open Sans text-xl font-normal text-slate-800 no-underline"
+                className={({ isActive }) =>
+                  `cursor-pointer font-Open Sans text-xl font-normal ${
+                    isActive ? "text-blue-600" : "text-slate-800"
+                  } no-underline  transition-shadow duration-300`
+                }
+                whileHover={{ scale: 1.1 }} // Scale on hover
+                whileTap={{ scale: 0.95 }} // Slightly shrink on tap
+                transition={{ type: 'spring', stiffness: 300 }} // Smooth transition
               >
                 {item.text}
-              </Link>
+              </MotionNavLink>
             </li>
           ))}
         </ul>
@@ -85,9 +94,14 @@ function Header() {
           >
             {navLink.map((item, index) => (
               <ListItemButton key={index}>
-                <Link component={RouterLink} to={item.path}>
+                <MotionNavLink
+                  to={item.path}
+                  whileHover={{ scale: 1.1 }} // Scale on hover
+                  whileTap={{ scale: 0.95 }} // Slightly shrink on tap
+                  transition={{ type: 'spring', stiffness: 300 }} // Smooth transition
+                >
                   {item.text}
-                </Link>
+                </MotionNavLink>
               </ListItemButton>
             ))}
           </List>

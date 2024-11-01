@@ -1,6 +1,7 @@
 import React from "react";
-import { Box, Grid, Typography, Link, IconButton, Card, CardMedia } from "@mui/material";
+import { Box, Grid, Typography,  IconButton, Card, CardMedia } from "@mui/material";
 import { Facebook, Instagram, Twitter, LinkedIn } from "@mui/icons-material";
+import {Link} from 'react-router-dom'
 import logo from '../assets/B.png'
 const Footer = () => {
   return (
@@ -9,6 +10,9 @@ const Footer = () => {
       sx={{
         // Dark background
         color: "#495057", // White text color
+        marginTop:'40px',
+        borderTop:'1px solid ',
+        borderColor:"#495057",
         padding: { xs: "20px", md: "40px" }, // Padding based on screen size
         textAlign: "center",
       }}
@@ -42,12 +46,14 @@ const Footer = () => {
           </Link>
         </Grid>
         <Grid item xs={12} md={3}>
+          <Link to={'/'}>
           <CardMedia
             component="img"
             sx={{ width:  "100px" ,margin:'  auto'}}
             alt='mediadownload logo'
             image={logo}
-          />
+            />
+            </Link>
           <Typography variant="h6" gutterBottom>
             Follow Us
           </Typography>

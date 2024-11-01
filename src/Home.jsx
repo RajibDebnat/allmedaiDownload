@@ -41,8 +41,9 @@ const [load, setLoad] = useState();
     
     // console.log(urls)
   }
-  const { links, picture, title } = videoDetails;
-
+  const { links, picture, title , } = videoDetails;
+  console.log('hey')
+console.log(links)
   return (
     <main className=" ">
       {/* <Header /> */}

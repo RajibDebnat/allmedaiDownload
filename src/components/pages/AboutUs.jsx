@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-
+import { Link } from "react-router-dom";
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
@@ -159,7 +159,7 @@ const AboutUs = () => {
       </motion.div>
 
       {/* Team Section */}
-      <motion.div 
+      {/* <motion.div 
         initial="initial"
         whileInView="animate"
         viewport={{ once: true }}
@@ -193,7 +193,7 @@ const AboutUs = () => {
             </motion.div>
           ))}
         </div>
-      </motion.div>
+      </motion.div> */}
 
       {/* Vision & Mission Section */}
       <motion.div 
@@ -249,7 +249,9 @@ const AboutUs = () => {
           whileTap={{ scale: 0.95 }}
           className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-12 py-5 rounded-full text-xl font-semibold shadow-xl hover:shadow-2xl transition-shadow duration-300"
         >
+          <Link to='/connect'>
           Get Started Now
+          </Link>
         </motion.button>
       </motion.div>
     </div>

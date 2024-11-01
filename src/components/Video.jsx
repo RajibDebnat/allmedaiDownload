@@ -27,11 +27,12 @@ export default function MediaControlCard({
   const audio = links.filter(
     (video) => video.hasAudio === true && video.hasVideo === false
   );
-  console.log(audio);
-  console.log(category)
+  
   // Filter for Instagram-like data
-  const instagramData = links.filter((video) => video.quality && video.link);
-  console.log(instagramData);
+  const instagramData = links.filter((video) => video.quality && video.link );
+  console.log('gee')
+
+  // console.log(instagramData);
   console.log(thumbnail);
   console.log(title);
 
@@ -114,7 +115,7 @@ export default function MediaControlCard({
                 {title.slice(0, 50) + "..."}
               </Typography>
             </CardContent>
-            {instagramData.map((data, index) => (
+            { instagramData.map((data, index) => (
               <DownloadButton
               keyIndex={`instagram-${data.quality}-${index}`}
                 link={data.link}
@@ -122,6 +123,13 @@ export default function MediaControlCard({
                 downloadLink={`${title}.mp4`}
               />
             ))}
+             <DownloadButton
+         
+         keyIndex="thumbnail-download"
+         link={thumbnail}
+         quality="Thumbnail"
+         downloadLink={`${title}-thumbnail.jpg`}
+         />
           </Box>
         </Card>
       )}

@@ -1,4 +1,4 @@
-const navLink = [ {text:"Home",path:'/'},{text:"About Us",path:'about-us'},{text:"Connect",path:'connect'}];
+const navLink = [ {text:"Home",path:'/'},{text:"About Us",path:'about-us'},{text:"Connect",path:'connect'},];
 const testimonials = [
     {
       name: "— Priya S.",
