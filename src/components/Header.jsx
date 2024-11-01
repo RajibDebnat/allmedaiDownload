@@ -41,7 +41,7 @@ function Header() {
               <MotionNavLink
                 to={item.path}
                 className={({ isActive }) =>
-                  `cursor-pointer font-Open Sans text-xl font-normal ${
+                  `cursor-pointer font-Open Sans text-lg font-normal ${
                     isActive ? "text-blue-600" : "text-slate-800"
                   } no-underline  transition-shadow duration-300`
                 }

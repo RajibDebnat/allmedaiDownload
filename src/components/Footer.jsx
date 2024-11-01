@@ -35,12 +35,18 @@ const Footer = () => {
           <Typography variant="h6" gutterBottom>
             Support
           </Typography>
+          <div>
+
           <Link href="#" color="inherit" underline="none" sx={{ display: "block", marginBottom: "8px" }}>
             Help Center
           </Link>
+          </div>
+          <div>
+
           <Link href="#" color="inherit" underline="none" sx={{ display: "block", marginBottom: "8px" }}>
             Terms of Service
           </Link>
+          </div>
           <Link href="#" color="inherit" underline="none" sx={{ display: "block", marginBottom: "8px" }}>
             Privacy Policy
           </Link>

@@ -92,7 +92,7 @@ const AboutUs = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl opacity-90"
           >
-            Your one-stop solution for downloading media from YouTube, Instagram, and more with ease.
+            Your one-stop solution for downloading media from <em> Instagram,Facebook,TikTok </em> and more with ease.
           </motion.p>
         </div>
         <motion.div 
