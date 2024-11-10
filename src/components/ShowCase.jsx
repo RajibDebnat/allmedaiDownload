@@ -7,7 +7,7 @@ import { Grid } from "@mui/joy";
 import CardMedia from "@mui/material/CardMedia";
 import { motion } from "framer-motion"; // Import Framer Motion
 
-import tiktok from "../assets/vecteezy_tiktok-png-icon_16716450-removebg.png";
+import tiktok from "../assets/vecteezy_tiktok-png-icon_16716450-removebg (1).webp";
 
 function ShowCase() {
   // Define animation variants

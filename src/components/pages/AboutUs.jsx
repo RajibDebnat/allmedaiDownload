@@ -243,16 +243,16 @@ const AboutUs = () => {
         >
           Join thousands of satisfied users who trust Media Downloader for their content needs.
         </motion.p>
+        <Link to='/connect'>
         <motion.button 
           variants={scaleIn}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-12 py-5 rounded-full text-xl font-semibold shadow-xl hover:shadow-2xl transition-shadow duration-300"
         >
-          <Link to='/connect'>
           Get Started Now
-          </Link>
         </motion.button>
+          </Link>
       </motion.div>
     </div>
   );

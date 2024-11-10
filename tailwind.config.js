@@ -1,4 +1,6 @@
-/** @type {import('tailwindcss').Config} */
+
+/**
+ *  @type {import('tailwindcss').Config} */
 export default {
   content: [
     './index.html',
@@ -9,6 +11,8 @@ export default {
       fontFamily:{
         montserrate:["Montserrat"," system-ui"],
         "Open Sans":[ "Open Sans", "sans-serif"],
+        "Bebas Neue":["Bebas Neue","sans-serif"],
+        "Prompt":["Prompt", "sans-serif"],
       },
       colors:{
         'heading-color':'#212529',

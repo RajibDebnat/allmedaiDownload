@@ -23,13 +23,17 @@ const Footer = () => {
           <Typography variant="h6" gutterBottom>
             Company
           </Typography>
-          <Link href="/about-us" color="inherit" underline="none" sx={{ display: "block", marginBottom: "8px" }}>
+          <div>
+
+          <Link to="/about-us" color="inherit" underline="none" sx={{ display: "block", marginBottom: "8px" }}>
             About Us
           </Link>
-         
-          <Link href="/connect" color="inherit" underline="none" sx={{ display: "block", marginBottom: "8px" }}>
+          </div>
+          <div>
+          <Link to="/connect" color="inherit" underline="none" sx={{ display: "block", marginBottom: "8px" }}>
             Contact
           </Link>
+          </div>
         </Grid>
         <Grid item xs={12} md={3}>
           <Typography variant="h6" gutterBottom>
@@ -64,7 +68,7 @@ const Footer = () => {
             Follow Us
           </Typography>
           <Box>
-            <IconButton href="#" target="_blank" color="inherit" aria-label="Facebook">
+            <IconButton href="https://www.facebook.com/profile.php?id=100079972287285" target="_blank" color="inherit" aria-label="Facebook">
               <Facebook />
             </IconButton>
             <IconButton href="#" target="_blank" color="inherit" aria-label="Instagram">

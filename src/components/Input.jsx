@@ -44,6 +44,7 @@ const PreMadeInput = function ({ handleSubmit }) {
           value={inputValue}
           onChange={handleInput}
           type={"url"}
+          
           placeholder="Paste URL…"
           startDecorator={<LinkIcon />}
           endDecorator={

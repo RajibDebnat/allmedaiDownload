@@ -13,11 +13,14 @@ const Image = styled("img")({
 export default function Loading() {
   return (
     <div>
-    
-        <Skeleton variant="rectangular" width="70%" height={"400px"} sx={{margin: '40px auto '}}>
-          <div style={{ paddingTop: "57%" }} />
-        </Skeleton>
-      
+      <Skeleton
+        variant="rectangular"
+        width="70%"
+        height={"400px"}
+        sx={{ margin: "40px auto " }}
+      >
+        <div style={{ paddingTop: "57%" }} />
+      </Skeleton>
     </div>
   );
 }

@@ -19,7 +19,7 @@ const videos = [
 function DownloadMethod() {
   return (
     <div style={{ padding: "20px", marginTop: '7rem' }}>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4"  gutterBottom>
         How to Download Videos
       </Typography>
 
