@@ -1,16 +1,21 @@
 import React, { useState, useRef } from "react";
 import Input from "@mui/joy/Input";
-import LinkIcon from "@mui/icons-material/Link";
 import { Button, Typography, Box } from "@mui/joy";
 import { motion, useInView } from "framer-motion";
 
-const SignUpForm = function ({ handleSubmit }) {
+const SignUpForm = function () {
+  const scriptURL = "https://script.google.com/macros/s/AKfycbyAP8isQHqM_M3UUbdJfDTvquq1txnZd0KvuJaajRlYPfcHO2UTZgHSMSNBgzk8dc9J/exec"; // Replace with your Google Apps Script URL
+  
   const [emailValue, setEmailValue] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true });
 
   const handleEmailInput = (event) => {
     setEmailValue(event.target.value);
     setEmailError("");
+    setSuccessMessage("");
   };
 
   const validateEmail = (email) => {
@@ -18,7 +23,7 @@ const SignUpForm = function ({ handleSubmit }) {
     return emailPattern.test(email);
   };
 
-  const handleNewsletterSignup = () => {
+  const handleNewsletterSignup = async () => {
     if (!emailValue.trim()) {
       setEmailError("Please enter your email.");
       return;
@@ -29,13 +34,23 @@ const SignUpForm = function ({ handleSubmit }) {
       return;
     }
 
-    // Handle newsletter signup
-    console.log("Newsletter email submitted:", emailValue);
-  };
+    // Send email data to Google Sheets
+    const formData = new FormData();
+    formData.append("email", emailValue);
 
-  // Create a ref and use useInView
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true }); // Only trigger once
+    try {
+      const response = await fetch(scriptURL, { method: "POST", body: formData });
+      if (response.ok) {
+        setSuccessMessage("Thank you for subscribing!");
+        setEmailValue("");
+      } else {
+        setEmailError("There was an issue with the subscription. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error!", error);
+      setEmailError("There was an error connecting to the server. Please try again.");
+    }
+  };
 
   return (
     <Box
@@ -81,7 +96,7 @@ const SignUpForm = function ({ handleSubmit }) {
         transition={{ duration: 0.8, delay: 0.6 }}
         value={emailValue}
         onChange={handleEmailInput}
-        type={"email"}
+        type="email"
         name="email"
         placeholder="Enter your email for updates"
         endDecorator={
@@ -105,6 +120,11 @@ const SignUpForm = function ({ handleSubmit }) {
       {emailError && (
         <Typography color="error" variant="body2" sx={{ marginTop: "8px" }}>
           {emailError}
+        </Typography>
+      )}
+      {successMessage && (
+        <Typography color="primary" variant="body2" sx={{ marginTop: "8px" }}>
+          {successMessage}
         </Typography>
       )}
     </Box>

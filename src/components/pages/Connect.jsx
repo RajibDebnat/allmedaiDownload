@@ -1,12 +1,17 @@
 import React, { useState } from "react";
-import { Box, TextField, Button, Typography, Container } from "@mui/material";
+import { Box, Button, Typography, Container } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { motion } from "framer-motion";
+import Input from "@mui/joy/Input";
 
 const ConnectPage = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState({ email: "", message: "" });
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  const scriptURL =
+    "https://script.google.com/macros/s/AKfycbzNCdAtxP9h5XcG10pv9wi0fipVUaW_NWpBKRt1C4SCJ2-mBHqUMsrP4LDr-hf8NAML/exec";
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -20,7 +25,7 @@ const ConnectPage = () => {
 
   const validateForm = () => {
     let isValid = true;
-    let errors = { email: "", message: "" };
+    const errors = { email: "", message: "" };
     const emailPattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 
     if (!email) {
@@ -40,10 +45,25 @@ const ConnectPage = () => {
     return isValid;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (validateForm()) {
-      alert("Form submitted successfully!");
+      try {
+        console.log("Email:", email, "Message:", message);
+
+        const response = await fetch(scriptURL, {
+          method: "POST",
+          body: new URLSearchParams({ email, message }),
+        });
+
+        if (response.ok) {
+          setSubmitSuccess(true);
+          setEmail("");
+          setMessage("");
+        }
+      } catch (error) {
+        console.error("Error submitting form", error);
+      }
     }
   };
 
@@ -56,9 +76,7 @@ const ConnectPage = () => {
         align="center"
         sx={{
           fontWeight: "bold",
-          // background: "linear-gradient(to right, #4A90E2, #9013FE)",
           WebkitBackgroundClip: "text",
-
           color: "#2479dc",
         }}
       >
@@ -68,7 +86,7 @@ const ConnectPage = () => {
         We'd love to hear from you! Fill out the form below to reach out.
       </Typography>
       <Typography variant="body1" align="center" gutterBottom>
-        Official Email : email@gmail.com
+        Official Email: email@gmail.com
       </Typography>
 
       <Box
@@ -87,33 +105,66 @@ const ConnectPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <TextField
-            label="Your Email"
-            variant="outlined"
+          <Input
+            placeholder="Enter your email"
             fullWidth
             value={email}
             onChange={handleEmailChange}
-            error={!!error.email}
-            helperText={error.email}
+            type="email"
+            name="email"
+            sx={{
+              "--Input-radius": "28px",
+              "--Input-placeholderOpacity": 0.7,
+              "--Input-minHeight": "52px",
+            }}
           />
+          {error.email && (
+            <Typography color="error" variant="caption">
+              {error.email}
+            </Typography>
+          )}
         </motion.div>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <TextField
-            label="Your Message"
-            variant="outlined"
-            fullWidth
-            multiline
-            rows={4}
-            value={message}
-            onChange={handleMessageChange}
-            error={!!error.message}
-            helperText={error.message}
-          />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Box
+              component="textarea"
+              placeholder="Your Message"
+              value={message}
+              onChange={handleMessageChange}
+              name="message"
+              style={{
+                width: "100%",
+                minHeight: "150px", // Adjust the height to make it look more like a text area
+                padding: "12px",
+                fontSize: "16px",
+                borderRadius: "8px",
+                border: error.message ? "1px solid red" : "1px solid #ccc",
+                resize: "vertical",
+                fontFamily: "inherit",
+                "--Input-placeholderOpacity": 0.7,
+              }}
+            />
+            {error.message && (
+              <Typography color="error" variant="caption">
+                {error.message}
+              </Typography>
+            )}
+          </motion.div>
+
+          {error.message && (
+            <Typography color="error" variant="caption">
+              {error.message}
+            </Typography>
+          )}
         </motion.div>
 
         <motion.div
@@ -128,15 +179,19 @@ const ConnectPage = () => {
             endIcon={<SendIcon />}
             fullWidth
             sx={{
-              // background: "linear-gradient(to right, #4A90E2, #9013FE)",
               color: "#fff",
               fontWeight: "bold",
-              // "&:hover": { background: "linear-gradient(to right, #9013FE, #4A90E2)" },
             }}
           >
             Send Message
           </Button>
         </motion.div>
+
+        {submitSuccess && (
+          <Typography color="success.main" align="center">
+            Message sent successfully!
+          </Typography>
+        )}
       </Box>
     </Container>
   );
