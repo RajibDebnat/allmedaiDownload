@@ -1,5 +1,5 @@
 import { fetchData } from "./ApiFetch";
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import "./App.css";
@@ -16,46 +16,52 @@ import { faqs } from "./constant";
 import FeatureCards from "./components/Features";
 import SignUpForm from "./components/SignUpForm";
 import Footer from "./components/Footer";
-import Loading from './components/Loading';
+import Loading from "./components/Loading";
 function Home() {
   const [urls, setUrls] = useState("");
   const [videoDetails, setVideoDetails] = useState("");
-  const [error,setError] = useState('')
-const [load, setLoad] = useState();
+  const [error, setError] = useState("");
+  const [load, setLoad] = useState();
   useEffect(() => {
     setLoad(true),
-    fetchData(urls).then((data) => {
-      if (data) {
-        setLoad(false)
-        setVideoDetails(data);  
-        console.log("Video details:", data);
-      } else {
-        console.log("Failed to fetch video details.");
-      }
-    });
-  }, [urls,setLoad]);
+    setError(false)
+      fetchData(urls).then((data) => {
+        if (data) {
+          setLoad(false);
+          setVideoDetails(data);
+          console.log("Video details:", data);
+        } else {
+         setError(true)
+        }
+      });
+  }, [urls, setLoad]);
 
   function handleUrlSubmit(url) {
     // console.log(url)
     setUrls(url);
-    
+
     // console.log(urls)
   }
-  const { links, picture, title , } = videoDetails;
-  console.log('hey')
-console.log(links)
+  console.log(videoDetails);
+  const { links, picture, title } = videoDetails;
+  console.log("hey");
+  console.log(load);
   return (
     <main className=" ">
       {/* <Header /> */}
-      <ShowCase/>
-      <PreMadeInput handleSubmit={handleUrlSubmit} />
+      <ShowCase />
+      <PreMadeInput handleSubmit={handleUrlSubmit} searchError={error} />
       <HowToDownload />
-      {load?<Loading/>:<Video thumbnail={picture} title={title} links={links} />}
-      <FeatureCards/>
-      <DownloadMethod/>
-      <TestimonialSlider/>
-      <AccordionSection/>
-      <SignUpForm/>
+      {load && !error ? (
+        <Loading />
+      ) : (
+        <Video thumbnail={picture} title={title} links={links} />
+      )}
+      <FeatureCards />
+      <DownloadMethod />
+      <TestimonialSlider />
+      <AccordionSection />
+      <SignUpForm />
       {/* <Footer/> */}
     </main>
   );

@@ -19,7 +19,7 @@ export default function MediaControlCard({
 }) {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down(862));
-  const [category, setCategory] = React.useState('');
+  const [category, setCategory] = React.useState("");
   // Filter for YouTube-like data (with both audio and video)
   const videoData = links.filter(
     (video) => video.hasAudio === true && video.hasVideo === true
@@ -27,10 +27,10 @@ export default function MediaControlCard({
   const audio = links.filter(
     (video) => video.hasAudio === true && video.hasVideo === false
   );
-  
+
   // Filter for Instagram-like data
-  const instagramData = links.filter((video) => video.quality && video.link );
-  console.log('gee')
+  const instagramData = links.filter((video) => video.quality && video.link);
+  console.log("gee");
 
   // console.log(instagramData);
   console.log(thumbnail);
@@ -58,29 +58,41 @@ export default function MediaControlCard({
             sx={{ display: "flex", flexDirection: "column", padding: "10px" }}
           >
             <CardContent sx={{ flex: "1 0 auto" }}>
-           
-              <SelectLabels setCategory={setCategory}  category={category}/>
-          
+              <SelectLabels setCategory={setCategory} category={category} />
+
               <Typography component="div" variant="h5">
                 {title.slice(0, 50) + "..."}
               </Typography>
             </CardContent>
             {/* category=== '' || category==="video" */}
-            { category=== '' || category==="video"?  videoData.map((data, index) => (
-              <DownloadButton
-              keyIndex={`youtube-${data.videoCodec}-${index}`}
-                link={data.link}
-                quality={data.qualityLabel}
-                downloadLink={`${title}-${data.qualityLabel}.mp4`}
-              />
-            )): audio.map((data, index) => (
-              <DownloadButton
-              keyIndex={`youtube-${data.videoCodec}-${index}`}
-                link={data.link}
-                quality={data.qualityLabel}
-                downloadLink={`${title}-${data.qualityLabel}.mp4`}
-              />
-            ))}
+            {category === "" || category === "video"
+              ? videoData.map((data, index) => (
+                  <DownloadButton
+                    keyIndex={`youtube-${data.videoCodec}-${index}`}
+                    link={data.link}
+                    quality={data.qualityLabel}
+                    downloadLink={`${title}-${data.qualityLabel}.mp4`}
+                  />
+                ))
+              : audio.map((data, index) => (
+                  <DownloadButton
+                    keyIndex={`youtube-${data.videoCodec}-${index}`}
+                    link={data.link}
+                    quality={data.qualityLabel}
+                    downloadLink={`${title}-${data.qualityLabel}.mp4`}
+                  />
+                ))}
+            <Box>
+  {thumbnail.startsWith('https') &&
+
+    <DownloadButton
+    keyIndex="thumbnail-download"
+    link={thumbnail}
+    quality="Thumbnail"
+    downloadLink={`${title}-thumbnail.jpg`}
+    />
+  }
+            </Box>
             <Typography
               variant="p"
               sx={{ fontSize: "14px", fontWeight: "normal", color: "gray" }}
@@ -115,21 +127,23 @@ export default function MediaControlCard({
                 {title.slice(0, 50) + "..."}
               </Typography>
             </CardContent>
-            { instagramData.map((data, index) => (
+            {instagramData.map((data, index) => (
               <DownloadButton
-              keyIndex={`instagram-${data.quality}-${index}`}
+                keyIndex={`instagram-${data.quality}-${index}`}
                 link={data.link}
                 quality={data.qualityLabel || data.quality}
                 downloadLink={`${title}.mp4`}
               />
             ))}
-             <DownloadButton
-         
-         keyIndex="thumbnail-download"
-         link={thumbnail}
-         quality="Thumbnail"
-         downloadLink={`${title}-thumbnail.jpg`}
-         />
+            {thumbnail.startsWith('https') &&
+
+<DownloadButton
+keyIndex="thumbnail-download"
+link={thumbnail}
+quality="Thumbnail"
+downloadLink={`${title}-thumbnail.jpg`}
+/>
+}
           </Box>
         </Card>
       )}

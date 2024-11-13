@@ -4,7 +4,7 @@ import LinkIcon from "@mui/icons-material/Link";
 import { Button, Typography } from "@mui/joy";
 import { motion } from "framer-motion";
 
-const PreMadeInput = function ({ handleSubmit }) {
+const PreMadeInput = function ({ handleSubmit,searchError }) {
   const [inputValue, setInputValue] = useState('');
   const [error, setError] = useState('');
 
@@ -65,6 +65,7 @@ const PreMadeInput = function ({ handleSubmit }) {
       {error && (
         <Typography color="error" variant="body2" sx={{ marginTop: "8px" }}>
           {error}
+          {searchError&& 'Server Problem . Please try again letter...'}
         </Typography>
       )}
     </motion.div>
