@@ -119,6 +119,7 @@ export default function MediaControlCard({
             alt={title.slice(0, 150) + "..."}
             image={thumbnail}
           />
+        
           <Box
             sx={{ display: "flex", flexDirection: "column", padding: "10px" }}
           >
