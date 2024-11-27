@@ -35,14 +35,7 @@ function Home() {
     });
   }, [urls, setLoad]);
 
-  useEffect(() => {
-    // Load the AdSense ad on component mount
-    try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    } catch (e) {
-      console.error("Adsense error:", e);
-    }
-  }, []);
+
 
   function handleUrlSubmit(url) {
     setUrls(url);
@@ -53,17 +46,8 @@ function Home() {
   return (
     <main className=" ">
       <ShowCase />
-      <div className="ad-container">
-        <ins
-          className="adsbygoogle"
-          style={{ display: "block" }}
-          data-ad-client="ca-pub-9171703337608922"
-          data-ad-slot="7053960170"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        ></ins>
-      </div>
-      <PreMadeInput handleSubmit={handleUrlSubmit} searchError={error} />
+  
+      <PreMadeInput handleSubmit={handleUrlSubmit} searchError={error.toString()} />
       <HowToDownload />
 
       {/* AdSense Ad - Place this where you want the ad to appear */}

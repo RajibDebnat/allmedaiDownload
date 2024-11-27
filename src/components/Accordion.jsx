@@ -10,12 +10,13 @@ export default function AccordionSection() {
   return (
     <div className=" mt-[7rem]  mb-14">
       {faqs.map((data, index) => (
-        <Accordion>
+        <Accordion key={index}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls={`panel${index + 1}-content`}
             id={`panel${index + 1}-header`}
             sx={{ color: "#228be6", textAlign:"left"}}
+          
           >
             {data.question}
           </AccordionSummary>
