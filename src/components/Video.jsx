@@ -24,13 +24,14 @@ export default function MediaControlCard({
   const videoData = links.filter(
     (video) => video.hasAudio === true && video.hasVideo === true
   );
+console.log(videoData)
   const audio = links.filter(
     (video) => video.hasAudio === true && video.hasVideo === false
   );
 
   // Filter for Instagram-like data
   const instagramData = links.filter((video) => video.quality && video.link);
-  console.log("gee");
+  // console.log("gee");
 
   // console.log(instagramData);
   console.log(thumbnail);
