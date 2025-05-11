@@ -22,7 +22,7 @@ function Header() {
   return (
     <header className="mb-16">
       <nav className="items-center flex justify-between">
-        <div className="rounded-3xl">
+        <div className="rounded-3xl text-white">
           <NavLink
             to={'/'}
             className="cursor-pointer font-Open Sans font-normal text-slate-800 no-underline"
@@ -42,7 +42,7 @@ function Header() {
                 to={item.path}
                 className={({ isActive }) =>
                   `cursor-pointer font-Open Sans text-lg font-normal ${
-                    isActive ? "text-blue-600" : "text-slate-800"
+                    isActive ? "text-blue-600" : "text-white"
                   } no-underline  transition-shadow duration-300`
                 }
                 whileHover={{ scale: 1.1 }} // Scale on hover

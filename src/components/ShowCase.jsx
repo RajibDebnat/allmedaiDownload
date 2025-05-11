@@ -57,7 +57,7 @@ function ShowCase() {
               style: { color: "white", fontSize: 40 },
             })}
           </motion.div>
-          <Typography style={{ color: "black", textAlign: "center" }}>
+          <Typography style={{ color: "white", textAlign: "center" }}>
             {item.label}
           </Typography>
         </Grid>

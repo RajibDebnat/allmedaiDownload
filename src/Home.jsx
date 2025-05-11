@@ -44,7 +44,7 @@ function Home() {
   const { links, picture, title } = videoDetails;
 
   return (
-    <main className=" ">
+    <main className="  ">
       <ShowCase />
   
       <PreMadeInput handleSubmit={handleUrlSubmit} searchError={error.toString()} />

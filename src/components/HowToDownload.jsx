@@ -15,13 +15,14 @@ function HowToDownload() {
   variant="h1" 
   sx={{
     marginTop: '80px', 
-    fontSize: isSmallScreen ? '1.8rem' : '3rem'
+    fontSize: isSmallScreen ? '1.8rem' : '3rem',
+    fontWeight: 'bold',
   }}
 >
   How To Download
 </Typography>
 
-    <Stepper sx={{ width: '100%' }}>
+    <Stepper sx={{ width: '100%' ,color:'white'}}>
     <Step
       orientation="vertical"
       indicator={
